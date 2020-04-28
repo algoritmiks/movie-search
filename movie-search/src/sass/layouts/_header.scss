@@ -1,0 +1,9 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 110px;
+  color: $color-header;
+  background-color: $color-header-background;
+  font-size: $font-size-header;
+}
