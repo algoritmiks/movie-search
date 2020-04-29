@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=cyrillic,cyrillic-ext,latin);
+@import "../../node_modules/swiper/css/swiper.min.css";
 * {
   margin: 0;
 }
@@ -19,6 +20,35 @@ body {
   height: 110px;
   color: #d4d4d4;
   background-color: #293957;
+  font-size: 1.5rem;
+}
+
+.swiper-container {
+  width: 300px;
+  height: 250px;
+  margin: 20px auto;
+}
+
+.swiper-slide-container {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  height: 100%;
+  max-width: 600px;
+  margin: auto;
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
 }
 
 /*# sourceMappingURL=style.css.map */

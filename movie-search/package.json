@@ -24,7 +24,8 @@
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
     "mini-css-extract-plugin": "^0.9.0",
-    "sass": "^1.26.3"
+    "sass": "^1.26.3",
+    "swiper": "^5.3.8"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
