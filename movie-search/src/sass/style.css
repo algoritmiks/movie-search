@@ -23,32 +23,61 @@ body {
   font-size: 1.5rem;
 }
 
+.wrapper {
+  margin: 0 auto;
+  max-width: 1260px;
+  display: flex;
+}
+
 .swiper-container {
-  width: 300px;
-  height: 250px;
+  width: 100%;
+  height: 500px;
   margin: 20px auto;
 }
 
-.swiper-slide-container {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-  height: 100%;
-  max-width: 600px;
-  margin: auto;
-  /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
+.swiper-slide {
   display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
+  background-color: yellowgreen;
+  height: 500px;
+}
+
+.movie-slide {
+  width: 300px;
+  height: 500px;
+}
+
+.movie-picture {
+  width: 300px;
+  height: 445px;
+}
+
+.movie-description {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1.5rem;
+  width: 300px;
+  height: 55px;
+}
+
+.movie-name {
+  width: 300px;
+  text-align: center;
+}
+
+.movie-year {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+}
+
+.imdb::before {
+  position: relative;
+  background-image: url(../assets/img/star.svg);
+  width: 24px;
+  height: 24px;
+  top: 4px;
+  left: -5px;
 }
 
 /*# sourceMappingURL=style.css.map */
