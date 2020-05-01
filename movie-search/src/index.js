@@ -11,7 +11,7 @@ const loadCards = () => {
     <div class="swiper-slide">
     <div class="movie-slide">
     <div class = "link">
-    <a href="https://www.imdb.com/title/${film.imdbID}/"></a>
+    <a href="https://www.imdb.com/title/${film.imdbID}/" target="_blank"></a>
     </div>
       <div class="movie-picture">
         <img src="${film.Poster}">
