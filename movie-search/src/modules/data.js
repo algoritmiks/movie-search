@@ -1,5 +1,4 @@
-let filmsData = {
-  "Search": [
+let filmsData = [
       {
           "Title": "Red's Dream",
           "Year": "1987",
@@ -40,8 +39,6 @@ let filmsData = {
         "Poster": "https://m.media-amazon.com/images/M/MV5BNDQ0Nzk5NTYyNV5BMl5BanBnXkFtZTcwOTA5ODMyMQ@@._V1_SX300.jpg",
         "imdbRating": "7.5",
       }
-  ],
-  "totalResults": "0",
-};
+  ];
 
 export default filmsData;
