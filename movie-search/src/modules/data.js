@@ -5,7 +5,7 @@ let filmsData = [
           "imdbID": "tt0093832",
           "Type": "movie",
           "Poster": "https://m.media-amazon.com/images/M/MV5BMmE5MDlmNTgtYjdhMi00Mzc1LWE5MmYtNzRjMzMxOGJkNDE2XkEyXkFqcGdeQXVyNDgyODgxNjE@._V1_SX300.jpg",
-          "imdbRating": "6.4",
+          "imdbRating": "6.3",
       },
       {
           "Title": "Dream Home",
@@ -21,7 +21,7 @@ let filmsData = [
           "imdbID": "tt2042583",
           "Type": "movie",
           "Poster": "https://m.media-amazon.com/images/M/MV5BZmM2OWQzNDgtOGNkMS00NzZjLThiNzAtNTY1MDM4MzE0NDgxXkEyXkFqcGdeQXVyNDE5MTU2MDE@._V1_SX300.jpg",
-          "imdbRating": "7.7",
+          "imdbRating": "7.6",
       },
       {
           "Title": "Dream Lover",
