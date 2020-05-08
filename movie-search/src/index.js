@@ -1,10 +1,10 @@
 import slides from './modules/slides';
 import filmsData from './modules/data';
 
-
 const swiperWrapper = document.querySelector('.swiper-wrapper');
 
 const loadCards = () => {
+  debugger
   filmsData.forEach((film)=>{
     swiperWrapper.innerHTML +=  
     `
@@ -43,51 +43,35 @@ const clearSlider = () => {
 
 updateSlider();
 
-const getRatingIMDB = (id) => {
-  const url = `https://www.omdbapi.com/?i=${id}&apikey=6fa14c59`;
-  return fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      debugger
-      return data.imdbRating;
-    })
-};
-
-
 const getMovies = (page, searchString) => {
   const url = `https://www.omdbapi.com/?s=${searchString}&page=${page}&apikey=6fa14c59`;
+  
   return fetch(url)
     .then(res => res.json())
     .then(data => {
       filmsData.length = 0;
-
-      for (let i = 0; i < data.Search.length; i += 1) {
-        let film = data.Search[i];
-        let filmRating = getRatingIMDB(film.imdbID);
+      let promises = [];
+      data.Search.forEach((film) => {
+        promises.push(
+          fetch(`https://www.omdbapi.com/?i=${film.imdbID}&apikey=6fa14c59`)
+            .then(res => res.json())
+        );
+      })
+      return Promise.all(promises);
+    })
+    .then(dat => {
+      dat.forEach((film)=> {
         filmsData.push({
           Title: film.Title,
           Year: film.Year,
           imdbID: film.imdbID,
           Poster: film.Poster,
-          imdbRating: filmRating
+          imdbRating: film.imdbRating
         })
-
-      }
-
-      // data.Search.forEach((film) => {
-      //   let filmRating = getRatingIMDB(film.imdbID);
-      //   filmsData.push({
-      //     Title: film.Title,
-      //     Year: film.Year,
-      //     imdbID: film.imdbID,
-      //     Poster: film.Poster,
-      //     imdbRating: filmRating
-      //   })
-      // })
-
+      })
       clearSlider();
-      updateSlider();
-    })
+      updateSlider();  
+    }) 
  }
 
 
