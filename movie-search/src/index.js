@@ -93,15 +93,30 @@ const translate = (word) => {
     })
 }
 
-document.querySelector('.search-button').addEventListener('click', (e) => {
+
+const onSearch = () => {
   const searchString = document.querySelector('.search-input').value;
+  state.currentPage = 1;
+  state.newWord = true;
   if (/[а-яё]+/gi.test(searchString)) {
     translate(searchString).then(() => {
-        state.currentPage = 1;
-        state.newWord = true;
         getMovies(state.currentPage, state.word);
     });
   } else {
     state.word = searchString;
+    getMovies(state.currentPage, state.word);
+  }
+}
+
+document.querySelector('.search-button').addEventListener('click', onSearch);
+
+
+document.querySelector('.clear-img').addEventListener('click', () => {
+  document.querySelector('.search-input').value = '';
+})
+
+document.addEventListener('keyup', (key)=>{
+  if (key.code === 'Enter') {
+    onSearch();
   }
 });
