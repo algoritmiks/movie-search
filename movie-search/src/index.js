@@ -3,8 +3,14 @@ import filmsData from './modules/data';
 
 const swiperWrapper = document.querySelector('.swiper-wrapper');
 
+const state = {
+  word: '',
+  totalPages: 0,
+  currentPage: 0,
+  newWord: false
+}
+
 const loadCards = () => {
-  debugger
   filmsData.forEach((film)=>{
     swiperWrapper.innerHTML +=  
     `
@@ -49,11 +55,15 @@ const getMovies = (page, searchString) => {
   return fetch(url)
     .then(res => res.json())
     .then(data => {
-      filmsData.length = 0;
+      if (state.newWord) {
+        filmsData.length = 0;
+        state.newWord = false;
+        state.totalPages = Math.ceil(data.totalResults / 10);
+      }
       let promises = [];
-      data.Search.forEach((film) => {
+      data.Search.forEach((movie) => {
         promises.push(
-          fetch(`https://www.omdbapi.com/?i=${film.imdbID}&apikey=6fa14c59`)
+          fetch(`https://www.omdbapi.com/?i=${movie.imdbID}&apikey=6fa14c59`)
             .then(res => res.json())
         );
       })
@@ -74,8 +84,24 @@ const getMovies = (page, searchString) => {
     }) 
  }
 
+const translate = (word) => {
+  let url = `https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20200429T145834Z.39eedef9eb007185.f7576a6c50e6c8be4c765d01a48e95e180e427f4&text=${word}&lang=ru-en`;
+  return fetch(url)
+    .then(res => res.json())
+    .then(result => {
+      state.word = result.text[0];
+    })
+}
 
 document.querySelector('.search-button').addEventListener('click', (e) => {
   const searchString = document.querySelector('.search-input').value;
-  getMovies(1, searchString);
+  if (/[а-яё]+/gi.test(searchString)) {
+    translate(searchString).then(() => {
+        state.currentPage = 1;
+        state.newWord = true;
+        getMovies(state.currentPage, state.word);
+    });
+  } else {
+    state.word = searchString;
+  }
 });
