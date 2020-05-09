@@ -71,6 +71,9 @@ const getMovies = (page, searchString) => {
     })
     .then(dat => {
       dat.forEach((film)=> {
+        if (film.Poster === 'N/A') {
+          film.Poster = 'assets/img/noposter.png';
+        };
         filmsData.push({
           Title: film.Title,
           Year: film.Year,
