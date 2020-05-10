@@ -11,6 +11,7 @@ const state = {
 }
 
 const loadCards = () => {
+  clearSlider();
   filmsData.forEach((film)=>{
     swiperWrapper.innerHTML +=  
     `
@@ -49,8 +50,8 @@ const clearSlider = () => {
 
 updateSlider();
 
-const getMovies = (page, searchString) => {
-  const url = `https://www.omdbapi.com/?s=${searchString}&page=${page}&apikey=6fa14c59`;
+const getMovies = () => {
+  const url = `https://www.omdbapi.com/?s=${state.word}&page=${state.currentPage}&apikey=6fa14c59`;
   
   return fetch(url)
     .then(res => res.json())
@@ -82,7 +83,6 @@ const getMovies = (page, searchString) => {
           imdbRating: film.imdbRating
         })
       })
-      clearSlider();
       updateSlider();  
     }) 
  }
@@ -99,15 +99,18 @@ const translate = (word) => {
 
 const onSearch = () => {
   const searchString = document.querySelector('.search-input').value;
-  state.currentPage = 1;
-  state.newWord = true;
-  if (/[а-яё]+/gi.test(searchString)) {
-    translate(searchString).then(() => {
-        getMovies(state.currentPage, state.word);
-    });
-  } else {
-    state.word = searchString;
-    getMovies(state.currentPage, state.word);
+  if (searchString) {
+    clearSlider();
+    state.currentPage = 1;
+    state.newWord = true;
+    if (/[а-яё]+/gi.test(searchString)) {
+      translate(searchString).then(() => {
+          getMovies(state.currentPage, state.word);
+      });
+    } else {
+      state.word = searchString;
+      getMovies(state.currentPage, state.word);
+    }
   }
 }
 
@@ -123,3 +126,13 @@ document.addEventListener('keyup', (key)=>{
     onSearch();
   }
 });
+
+
+const addSlidesFromAPI = () => {
+  if (state.currentPage < state.totalPages) {
+    state.currentPage += 1;
+    getMovies()
+  }
+};
+
+slides.on('reachEnd', addSlidesFromAPI);
