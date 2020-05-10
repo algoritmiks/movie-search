@@ -85,6 +85,7 @@ const getMovies = () => {
       })
       updateSlider();  
     }) 
+    .catch(()=> alert('no results for you request'));
  }
 
 const translate = (word) => {
